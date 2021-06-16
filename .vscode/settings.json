@@ -1,0 +1,10 @@
+{
+  "python.formatting.autopep8Args": ["--disable", "E402"],
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.analysis.extraPaths": ["./raspi-app"]
+}
