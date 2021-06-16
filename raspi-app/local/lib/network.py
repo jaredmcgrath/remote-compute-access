@@ -10,7 +10,6 @@ Created on Tue Jul 1 2021
 # ---------------------------------------------------------------------------------------------------------------------
 #%% Add local path
 
-from local.lib.pathing import find_root_path
 import os
 import sys
 
@@ -52,56 +51,41 @@ find_path_to_local()
 # ---------------------------------------------------------------------------------------------------------------------
 #%% Imports
 
-# .....................................................................................................................
-# .....................................................................................................................
-
-# ---------------------------------------------------------------------------------------------------------------------
-#%% Environment
-
-# .....................................................................................................................
-
-def get_service_protocol():
-    """Returns SERVICE_PROTOCOL (protocol of service) if set, or \'http\'"""
-    return os.environ.get("SERVICE_PROTOCOL", "http")
-
-# .....................................................................................................................
-
-def get_service_host():
-    """Returns SERVICE_HOST (host address of service) if set, or \'0.0.0.0\'"""
-    return os.environ.get("SERVICE_HOST", "0.0.0.0")
-
-# .....................................................................................................................
-
-def get_service_port():
-    """Returns SERVICE_PORT (port of service) if set, or \'6969\'"""
-    return int(os.environ.get("SERVICE_PORT", 6969))
-
-# .....................................................................................................................
-
-def get_remote_host():
-    return os.environ.get("REMOTE_HOST", "192.168.2.128")
-
-# .....................................................................................................................
-
-def get_remote_ssh_port():
-    return int(os.environ.get("REMOTE_SSH_PORT", 22))
-
-# .....................................................................................................................
-
-def get_remote_mac():
-    return os.environ.get("REMOTE_MAC", "1C:1B:0D:95:58:E9")
+import platform
+import subprocess
 
 # .....................................................................................................................
 # .....................................................................................................................
 
 # ---------------------------------------------------------------------------------------------------------------------
-#%% Control functions
+#%% Network functions
+
+def ping_machine(host, timeout=100):
+    """
+    Returns True if host (str) responds to a ping request.
+    Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
+    """
+
+    # Option for the number of packets as a function of
+    num_param = '-n' if platform.system().lower()=='windows' else '-c'
+    wait_param = "-w" if platform.system().lower()=='windows' else '-W'
+
+    # Building the command. Ex: "ping -c 1 google.com"
+    command = ['ping', num_param, '1', wait_param, str(timeout), host]
+
+    return subprocess.call(command) == 0
 
 # .....................................................................................................................
 
-def get_debugmode():
-    """Returns DEBUG_MODE (bool of the service in debug mode). Defaults to True"""
-    return bool(int(os.environ.get("DEBUG_MODE", 1)))
+def nmap_host_info(host):
+    if platform.system().lower()=='windows':
+        return {"error": "cannot run nmap on windows"}
+    else:
+        command = ["nmap", "-O", "-sV", host]
+
+        result = subprocess.run(command, capture_output=True, text=True)
+
+        return {"result": result.stdout}
 
 # .....................................................................................................................
 # .....................................................................................................................
@@ -114,18 +98,7 @@ def get_debugmode():
 
 if __name__ == "__main__":
 
-    # Print out environment variables for quick checks
-    print("")
-    print("SERVICE_DEBUG:", get_debugmode())
-    print("")
-    print("SERVICE_PROTOCOL:", get_service_protocol())
-    print("SERVICE_HOST:", get_service_host())
-    print("SERVICE_PORT:", get_service_port())
-    print("")
-    print("REMOTE_PROTOCOL", get_remote_protocol())
-    print("REMOTE_HOST", get_remote_host())
-    print("REMOTE_PORT", get_remote_port())
-    print("")
+    pass
 
 
 # ---------------------------------------------------------------------------------------------------------------------

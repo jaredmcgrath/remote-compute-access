@@ -13,6 +13,7 @@ from flask_cors import CORS
 from waitress import serve as wsgi_serve
 
 from wakeonlan import send_magic_packet
+from local.lib.network import nmap_host_info, ping_machine
 from local.lib.response_helpers import json_response, json_response
 
 from local.lib.server_helpers import check_git_version, register_waitress_shutdown_command
@@ -117,6 +118,32 @@ def bring_online_route():
     send_magic_packet(REMOTE_MAC)
 
     return json_response({"success": "magic packet sent"})
+
+# .....................................................................................................................
+
+@wsgi_app.route("/check-online")
+@wsgi_app.route("/check-online/<int:timeout_ms>")
+def check_online_route(timeout_ms=100):
+    '''
+    Checks if the machine is online
+    '''
+
+    is_online = ping_machine(REMOTE_HOST, timeout_ms)
+
+    return json_response({"is_online": is_online})
+
+# .....................................................................................................................
+
+@wsgi_app.route("/get-host-info")
+def get_host_info_route():
+    '''
+    Runs an nmap to query the host info
+    '''
+
+    result = nmap_host_info(REMOTE_HOST)
+
+    return json_response(result)
+
 
 # ---------------------------------------------------------------------------------------------------------------------
 # %% Configure globals
