@@ -73,8 +73,8 @@ def get_service_host():
 # .....................................................................................................................
 
 def get_service_port():
-    """Returns SERVICE_PORT (port of service) if set, or \'7373\'"""
-    return int(os.environ.get("SERVICE_PORT", 7373))
+    """Returns SERVICE_PORT (port of service) if set, or \'6969\'"""
+    return int(os.environ.get("SERVICE_PORT", 6969))
 
 # .....................................................................................................................
 
