@@ -9,4 +9,4 @@ venv_path=$this_script_dir_path/venv
 
 cd $app_root_path
 source $venv_path/bin/activate
-nohup python3 launch.py &
+python3 launch.py

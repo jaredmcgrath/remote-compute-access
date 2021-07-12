@@ -122,9 +122,9 @@ if __name__ == "__main__":
     print("SERVICE_HOST:", get_service_host())
     print("SERVICE_PORT:", get_service_port())
     print("")
-    print("REMOTE_PROTOCOL", get_remote_protocol())
+    print("REMOTE_PROTOCOL", get_service_protocol())
     print("REMOTE_HOST", get_remote_host())
-    print("REMOTE_PORT", get_remote_port())
+    print("REMOTE_PORT", get_service_port())
     print("")
 
 
