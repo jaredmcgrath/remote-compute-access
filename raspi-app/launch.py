@@ -144,6 +144,18 @@ def get_host_info_route():
 
     return json_response(result)
 
+# .....................................................................................................................
+
+@wsgi_app.route("/get-current-os")
+def get_current_os():
+    '''
+    Runs the current operating system
+    '''
+
+    result = nmap_host_info(REMOTE_HOST)
+
+    return json_response(result)
+
 
 # ---------------------------------------------------------------------------------------------------------------------
 # %% Configure globals

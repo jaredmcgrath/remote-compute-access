@@ -2,6 +2,14 @@
 
 ## Commands
 
+### Restart
+
+Windows: `Restart-Computer`
+
+This will cause the system to reboot, which will then boot into Ubuntu through GRUB
+
+Ubuntu: `sudo reboot`
+
 ### Wake on LAN
 
 Syntax: `wakeonlan -i <ip_addr> <mac_addr>`
