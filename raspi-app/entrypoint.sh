@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-# pathing
 this_script_relative_path=$0
 this_script_full_path=$(realpath $this_script_relative_path)
 this_script_dir_path=$(dirname $this_script_full_path)
