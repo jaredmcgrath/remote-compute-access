@@ -1,0 +1,12 @@
+[Service]
+WorkingDirectory=/home/jared/remote-compute-access/raspi-app
+ExecStart=node /home/jared/remote-compute-access/raspi-app/entrypoint.sh
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=raspi-app
+User=root
+Group=root
+Environment=              
+[Install]
+WantedBy=multi-user.target
