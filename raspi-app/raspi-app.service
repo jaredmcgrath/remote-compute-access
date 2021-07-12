@@ -7,5 +7,7 @@ StandardError=syslog
 SyslogIdentifier=raspi-app
 User=root
 Group=root
+Environment="RASPI_APP_ROOT_PATH=/home/jared/remote-compute-access/raspi-app"
+Environment="RASPI_APP_VENV_PATH=/home/jared/remote-compute-access/venv"
 [Install]
 WantedBy=multi-user.target
