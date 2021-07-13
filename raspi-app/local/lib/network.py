@@ -67,7 +67,7 @@ def ping_machine(host, timeout=100):
     """
 
     # Building the command. Ex: "ping -c 1 google.com"
-    command = ['ping', '-c', '1', '-w', int(round(timeout / 1000)), host]
+    command = ['ping', '-c', '1', '-w', str(round(timeout / 1000)), host]
 
     return subprocess.call(command, timeout=timeout / 1000) == 0
 
