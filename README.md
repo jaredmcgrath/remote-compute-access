@@ -27,6 +27,15 @@ From within desktop powershell SSH:
 
 - `C:\Windows\System32\rundll32.exe powrprof.dll,SetSuspendState Hibernate`
 
+### Reboot to Windows
+
+From Ubuntu,
+
+```bash
+cd ~
+sudo ./remote-compute/reboot_os.sh --item 6
+```
+
 ## GRUB Entries
 
 0. Ubuntu

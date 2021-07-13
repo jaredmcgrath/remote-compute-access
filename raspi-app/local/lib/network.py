@@ -66,14 +66,10 @@ def ping_machine(host, timeout=100):
     Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
     """
 
-    # Option for the number of packets as a function of
-    num_param = '-n' if platform.system().lower()=='windows' else '-c'
-    wait_param = "-w" if platform.system().lower()=='windows' else '-W'
-
     # Building the command. Ex: "ping -c 1 google.com"
-    command = ['ping', num_param, '1', wait_param, str(timeout), host]
+    command = ['ping', '-c', '1', '-w', round(timeout / 1000), host]
 
-    return subprocess.call(command) == 0
+    return subprocess.call(command, timeout=timeout / 1000) == 0
 
 # .....................................................................................................................
 
