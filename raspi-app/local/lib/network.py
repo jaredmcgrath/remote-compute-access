@@ -69,7 +69,12 @@ def ping_machine(host, timeout=100):
     # Building the command. Ex: "ping -c 1 google.com"
     command = ['ping', '-c', '1', '-w', str(round(timeout / 1000)), host]
 
-    return subprocess.call(command, timeout=timeout / 1000) == 0
+    try:
+        is_online = subprocess.call(command, timeout=timeout / 1000) == 0
+    except subprocess.TimeoutExpired:
+        is_online = False
+
+    return is_online
 
 # .....................................................................................................................
 
@@ -81,7 +86,11 @@ def nmap_host_info(host):
 
         result = subprocess.run(command, capture_output=True, text=True)
 
-        return {"result": result.stdout}
+        # result.stdout will be a string separated with '\n'
+        # Parse this by splitting and returning an array
+        result_arr = result.stdout.split("\n")
+
+        return {"result": result_arr}
 
 # .....................................................................................................................
 # .....................................................................................................................

@@ -10,7 +10,6 @@ Created on Tue Jul 1 2021
 # ---------------------------------------------------------------------------------------------------------------------
 #%% Add local path
 
-from local.lib.pathing import find_root_path
 import os
 import sys
 
@@ -122,9 +121,9 @@ if __name__ == "__main__":
     print("SERVICE_HOST:", get_service_host())
     print("SERVICE_PORT:", get_service_port())
     print("")
-    print("REMOTE_PROTOCOL", get_service_protocol())
+    print("REMOTE_MAC", get_remote_mac())
     print("REMOTE_HOST", get_remote_host())
-    print("REMOTE_PORT", get_service_port())
+    print("REMOTE_SSH_PORT", get_remote_ssh_port())
     print("")
 
 

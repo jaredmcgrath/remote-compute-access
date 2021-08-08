@@ -2,7 +2,7 @@
 """
 Created on Fri May 28 2021
 
-@author: Jack Malloch
+@author: Jared McGrath
 """
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ from waitress import serve as wsgi_serve
 
 from wakeonlan import send_magic_packet
 from local.lib.network import nmap_host_info, ping_machine
-from local.lib.response_helpers import json_response, json_response
+from local.lib.response_helpers import json_response
 
 from local.lib.server_helpers import check_git_version, register_waitress_shutdown_command
 from local.lib.environment import get_remote_host, get_remote_mac, get_remote_ssh_port, get_service_host, get_service_protocol, get_service_port, get_debugmode
