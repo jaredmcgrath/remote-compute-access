@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$RASPI_APP_VENV_PATH/bin/python $RASPI_APP_LAUNCH_PATH

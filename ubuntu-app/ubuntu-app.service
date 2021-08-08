@@ -1,0 +1,13 @@
+[Service]
+WorkingDirectory=/home/jared/remote-compute-access/ubuntu-app
+ExecStart=/home/jared/remote-compute-access/ubuntu-app/entrypoint.sh
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ubuntu-app
+User=root
+Group=root
+Environment="UBUNTU_APP_LAUNCH_PATH=/home/jared/remote-compute-access/ubuntu-app/launch.py"
+Environment="UBUNTU_APP_VENV_PATH=/home/jared/remote-compute-access/venv"
+[Install]
+WantedBy=multi-user.target
