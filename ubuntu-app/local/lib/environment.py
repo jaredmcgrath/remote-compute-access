@@ -76,8 +76,8 @@ def get_service_port():
     return int(os.environ.get("SERVICE_PORT", 6969))
 
 def get_scripts_path():
-    """Returns RASPI_APP_LAUNCH_PATH-based path to the scripts directory, or defaults to \'\'"""
-    launch_path = os.environ.get("RASPI_APP_LAUNCH_PATH", "/home/jared/remote-compute-access/ubuntu-app/launch.py")
+    """Returns UBUNTU_APP_LAUNCH_PATH-based path to the scripts directory, or defaults to \'\'"""
+    launch_path = os.environ.get("UBUNTU_APP_LAUNCH_PATH", "/home/jared/remote-compute-access/ubuntu-app/launch.py")
     ubuntu_app_root = os.path.dirname(launch_path)
     scripts_path = os.path.join(ubuntu_app_root, "scripts")
     return scripts_path

@@ -68,10 +68,13 @@ def reboot_with_os(grub_boot_number):
     0 = Ubuntu
     6 = Windows
     '''
+
+    # Get path to scripts folder
     scripts_path = get_scripts_path()
-    reboot_path = os.path.join(scripts_path, "reboot_os.sh")
-    executable_path = "." + reboot_path
-    command = [executable_path, "-i", grub_boot_number]
+    # Make the path to reboot_os.sh
+    reboot_script_path = os.path.join(scripts_path, "reboot_os.sh")
+    # USe bash to run the script with the appropriate arg
+    command = ["bash", reboot_script_path, "-i", str(grub_boot_number)]
 
     result = subprocess.run(command, capture_output=True, text=True)
 
