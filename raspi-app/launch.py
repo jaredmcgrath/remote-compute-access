@@ -13,7 +13,7 @@ from flask_cors import CORS
 from waitress import serve as wsgi_serve
 
 from wakeonlan import send_magic_packet
-from local.lib.network import nmap_host_info, ping_machine
+from local.lib.network import nmap_host_info, ping_machine, reboot_desktop_to_os
 from local.lib.response_helpers import json_response
 
 from local.lib.server_helpers import check_git_version, register_waitress_shutdown_command
@@ -149,10 +149,22 @@ def get_host_info_route():
 @wsgi_app.route("/get-current-os")
 def get_current_os():
     '''
-    Runs the current operating system
+    Gets the current operating system
     '''
 
     result = nmap_host_info(REMOTE_HOST)
+
+    return json_response(result)
+
+# .....................................................................................................................
+
+@wsgi_app.route("/set-current-os/<string:os_select>")
+def get_current_os(os_select):
+    '''
+    Sets the current operating system
+    '''
+
+    result = reboot_desktop_to_os(os_select)
 
     return json_response(result)
 

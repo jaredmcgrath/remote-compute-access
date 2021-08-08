@@ -115,6 +115,8 @@ def bring_online_route(os_select):
 
     os_select: "windows" | "ubuntu"
 
+    os_select will be mapped to the appropriate GRUB entry
+
     0 = Ubuntu
     6 = Windows
     '''

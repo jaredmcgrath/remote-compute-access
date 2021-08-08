@@ -54,6 +54,10 @@ find_path_to_local()
 import platform
 import subprocess
 
+import requests
+
+from local.lib.environment import get_remote_host, get_remote_web_port
+
 # .....................................................................................................................
 # .....................................................................................................................
 
@@ -91,6 +95,27 @@ def nmap_host_info(host):
         result_arr = result.stdout.split("\n")
 
         return {"result": result_arr}
+
+# .....................................................................................................................
+
+def reboot_desktop_to_os(os_select):
+    '''
+    Reboots the desktop PC with a specified OS.
+
+    os_select: "windows" | "ubuntu"
+    '''
+
+    remote_web_base = "http://" + get_remote_host() + ":" + get_remote_web_port()
+    req_url = remote_web_base + "/reboot-with-os/" + os_select
+
+    try:
+        http_response = requests.get(req_url)
+        response = http_response.json()
+    # If we error (e.g. from no response from the remote, )
+    except (requests.exceptions.ConnectionError):
+        response = {"result": "success with error"}
+    
+    return response
 
 # .....................................................................................................................
 # .....................................................................................................................
