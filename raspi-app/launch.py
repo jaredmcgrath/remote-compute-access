@@ -159,7 +159,7 @@ def get_current_os():
 # .....................................................................................................................
 
 @wsgi_app.route("/set-current-os/<string:os_select>")
-def get_current_os(os_select):
+def set_current_os(os_select):
     '''
     Sets the current operating system
     '''
